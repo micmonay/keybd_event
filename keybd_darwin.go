@@ -16,10 +16,6 @@ package keybd_event
  }
 */
 import "C"
-import (
-
-	"time"
-)
 const (
 	_AShift = C.kCGEventFlagMaskAlphaShift
 	_VK_SHIFT = C.kCGEventFlagMaskShift
@@ -40,38 +36,39 @@ func initKeyBD() error { return nil}
 // Launch key bounding
 func (k *KeyBounding) Launching() error {
 
-	for _, key := range keys {
-		tapKey(key)
+	for _, key := range k.keys {
+		k.tapKey(key)
 	}
+	return nil
 }
-func shift(event uintptr){
-	C.AddActionKey(VK_SHIF,event)
+func shift(event C.CGEventRef){
+	C.AddActionKey(_VK_SHIFT,event)
 }
-func ctrl(event uintptr){
-	C.AddActionKey(VK_CTRL,event)
+func ctrl(event C.CGEventRef){
+	C.AddActionKey(_VK_CTRL,event)
 }
-func alt(event uintptr){
-	C.AddActionKey(VK_ALT,event)
+func alt(event C.CGEventRef){
+	C.AddActionKey(_VK_ALT,event)
 }
-func cmd(event uintptr){
-	C.AddActionKey(VK_CMD,event)
+func cmd(event C.CGEventRef){
+	C.AddActionKey(_VK_CMD,event)
 }
-func tapKey(key int) {
-	event := C.Create(int)
+func (k KeyBounding) tapKey(key int) {
+	event := C.Create(C.int(key))
 	if k.hasALT{
-		C.AddActionKey(_VK_ALT,event)
+		alt(event)
 	}
 	if k.hasCTRL{
-		C.AddActionKey(_VK_CTRL,event)
+		ctrl(event)
 	}
 	if k.hasSHIFT{
-		C.AddActionKey(_VK_SHIFT,event)
+		shift(event)
 	}
-	if k.hasRCTRL{
-		C.AddActionKey(_VK_CTRL,event)
+	if k.hasRCTRL{//not support on mac
+		ctrl(event)
 	}
-	if k.hasRSHIFT {
-		C.AddActionKey(_VK_SHIFT,event)
+	if k.hasRSHIFT {//not support on mac
+		shift(event)
 	}
 	C.KeyTap(event)
 }
