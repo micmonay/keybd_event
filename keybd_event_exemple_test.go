@@ -22,5 +22,5 @@ func ExempleNewKeyBounding(){
 	if err!=nil {
 		panic(err)
 	}
-	//Ouput : AB
+	// Output: AB
 }
