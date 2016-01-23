@@ -3,7 +3,7 @@
 
 ## For simulate key press in Linux, Windows and Mac in golang
 
-### An exemple :
+### An example :
 ```go
     kb,err := keybd.NewKeyBounding()
     if err!=nil {
