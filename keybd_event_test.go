@@ -6,7 +6,7 @@ import (
 	"github.com/micmonay/keybd_event"
 )
 
-func ExempleNewKeyBounding(){
+func ExampleNewKeyBounding(){
 	kb,err := keybd_event.NewKeyBounding()
 	if err!=nil {
 		panic(err)
