@@ -11,7 +11,7 @@ func ExampleNewKeyBounding(){
 	if err!=nil {
 		panic(err)
 	}
-	// for linux is very important wait 2 second
+	// for linux is very important wait 2 seconds
 	if runtime.GOOS == "linux" {
 		time.Sleep(2 * time.Second)
 	}
