@@ -1,3 +1,6 @@
+/*
+	This package is used for a key press simulated
+*/
 package keybd_event
 type KeyBounding struct {
 	hasCTRL bool
@@ -7,9 +10,7 @@ type KeyBounding struct {
 	hasRSHIFT bool
 	keys[] int
 }
-/**
-	Use for create struct KeyBounding
- */
+//Use for create struct KeyBounding
 func NewKeyBounding() (KeyBounding,error){
 	keyBounding := KeyBounding{}
 	keyBounding.hasALT=false
@@ -27,21 +28,15 @@ func NewKeyBounding() (KeyBounding,error){
 func (k *KeyBounding) SetKeys(keys... int){
 	k.keys = keys
 }
-/**
-	If key ALT pressed
- */
+//If key ALT pressed
 func (k *KeyBounding) HasALT(b bool) {
 	k.hasALT=b
 }
-/**
-	If key CTRL pressed
- */
+//If key CTRL pressed
 func (k *KeyBounding) HasCTRL(b bool) {
 	k.hasCTRL=b
 }
-/**
-	If key SHIFT pressed
- */
+//If key SHIFT pressed
 func (k *KeyBounding) HasSHIFT(b bool) {
 	k.hasSHIFT=b
 }

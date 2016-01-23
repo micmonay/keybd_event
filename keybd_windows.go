@@ -6,9 +6,7 @@ import (
 var dll = syscall.NewLazyDLL("user32.dll")
 var procKeyBd = dll.NewProc("keybd_event")
 
-/**
-	Launch key bounding
- */
+// Launch key bounding
 func (k *KeyBounding) Launching() error {
 	//key down
 	if k.hasALT {
@@ -21,10 +19,10 @@ func (k *KeyBounding) Launching() error {
 		downKey(_VK_CTRL)
 	}
 	if k.hasRSHIFT {
-		downKey(_VK_RIGHTSHIFT)
+		downKey(_VK_RSHIFT)
 	}
 	if k.hasRCTRL {
-		downKey(_VK_RIGHTCTRL)
+		downKey(_VK_RCONTROL)
 	}
 	for _, key := range k.keys {
 		downKey(key)
@@ -40,10 +38,10 @@ func (k *KeyBounding) Launching() error {
 		upKey(_VK_CTRL)
 	}
 	if k.hasRSHIFT {
-		upKey(_VK_RIGHTSHIFT)
+		upKey(_VK_RSHIFT)
 	}
 	if k.hasRCTRL {
-		upKey(_VK_RIGHTCTRL)
+		upKey(_VK_RCONTROL)
 	}
 	for _, key := range k.keys {
 		upKey(key)

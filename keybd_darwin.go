@@ -37,6 +37,7 @@ const (
 	_VK_Shift = 0x38
 )
 func initKeyBD() error { return nil}
+// Launch key bounding
 func (k *KeyBounding) Launching() error {
 
 	for _, key := range keys {

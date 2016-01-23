@@ -76,7 +76,8 @@ func initKeyBD() error{
 	}
 	return nil
 }
-func DestroyLinuxUInput(){
+//actualy don't use
+func destroyLinuxUInput(){
 	syscall.Syscall(syscall.SYS_IOCTL, fd.Fd(), _UI_DEV_DESTROY, 0)
 	fd.Close()
 }
@@ -90,9 +91,7 @@ func getFileUInput() (string,error){
 	err :=errors.New("Not found uinput file. Try this cmd 'sudo modprobe uinput'")
 	return "",err
 }
-/**
-	Launch key bounding
- */
+// Launch key bounding
 func (k *KeyBounding) Launching() error {
 
 
