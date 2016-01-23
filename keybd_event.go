@@ -1,5 +1,5 @@
 /*
-	This package is used for a key press simulated
+	This package is used for a key press simulated in Windows, Linux and Mac
 */
 package keybd_event
 type KeyBounding struct {
