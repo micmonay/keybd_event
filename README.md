@@ -1,7 +1,7 @@
 # keybd_event
 For simulate key press in Linux, Windows and Mac in golang (actualy in beta)
 An exemple :
-'''go
+'''
     kb,err := keybd.NewKeyBounding()
 	if err!=nil {
 		panic(err)
