@@ -7,7 +7,7 @@ var dll = syscall.NewLazyDLL("user32.dll")
 var procKeyBd = dll.NewProc("keybd_event")
 
 // Launch key bounding
-func (k *KeyBounding) Launching() error {
+func (k *KeyBonding) Launching() error {
 	//key down
 	if k.hasALT {
 		downKey(_VK_ALT)

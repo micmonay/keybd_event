@@ -1,13 +1,12 @@
-package keybd_event_test
+package keybd_event
 
 import (
 	"time"
 	"runtime"
-	"github.com/micmonay/keybd_event"
 )
 
-func ExampleNewKeyBounding(){
-	kb,err := keybd_event.NewKeyBounding()
+func ExampleNewKeyBonding(){
+	kb,err := NewKeyBonding()
 	if err!=nil {
 		panic(err)
 	}
@@ -15,7 +14,7 @@ func ExampleNewKeyBounding(){
 	if runtime.GOOS == "linux" {
 		time.Sleep(2 * time.Second)
 	}
-	kb.SetKeys(keybd_event.VK_A,keybd_event.VK_B) //set keys
+	kb.SetKeys(VK_A,VK_B) //set keys
 
 	kb.HasSHIFT(true) //set shif is pressed
 

@@ -92,7 +92,7 @@ func getFileUInput() (string,error){
 	return "",err
 }
 // Launch key bounding
-func (k *KeyBounding) Launching() error {
+func (k *KeyBonding) Launching() error {
 
 
 	if k.hasALT {

@@ -2,7 +2,7 @@
 	This package is used for a key press simulated in Windows, Linux and Mac
 */
 package keybd_event
-type KeyBounding struct {
+type KeyBonding struct {
 	hasCTRL bool
 	hasALT bool
 	hasSHIFT bool
@@ -11,8 +11,8 @@ type KeyBounding struct {
 	keys[] int
 }
 //Use for create struct KeyBounding
-func NewKeyBounding() (KeyBounding,error){
-	keyBounding := KeyBounding{}
+func NewKeyBonding() (KeyBonding,error){
+	keyBounding := KeyBonding{}
 	keyBounding.hasALT=false
 	keyBounding.hasCTRL=false
 	keyBounding.hasSHIFT=false
@@ -25,18 +25,18 @@ func NewKeyBounding() (KeyBounding,error){
 	}
 	return keyBounding,nil
 }
-func (k *KeyBounding) SetKeys(keys... int){
+func (k *KeyBonding) SetKeys(keys... int){
 	k.keys = keys
 }
 //If key ALT pressed
-func (k *KeyBounding) HasALT(b bool) {
+func (k *KeyBonding) HasALT(b bool) {
 	k.hasALT=b
 }
 //If key CTRL pressed
-func (k *KeyBounding) HasCTRL(b bool) {
+func (k *KeyBonding) HasCTRL(b bool) {
 	k.hasCTRL=b
 }
 //If key SHIFT pressed
-func (k *KeyBounding) HasSHIFT(b bool) {
+func (k *KeyBonding) HasSHIFT(b bool) {
 	k.hasSHIFT=b
 }
