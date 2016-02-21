@@ -5,7 +5,7 @@
 
 ### An example :
 ```go
-    kb,err := keybd.NewKeyBounding()
+    kb,err := keybd.NewKeyBonding()
     if err!=nil {
         panic(err)
     }
