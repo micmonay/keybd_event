@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;keybd_event&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/UpnpTools" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/AndroidBind" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/Terminal" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/github.com" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/golang.org" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/Android" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <excluded>
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/github.com/apcera/termtables/.git" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/github.com/micmonay/keybd_event/.git" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/golang.org/x/mobile/testdata" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/golang.org/x/mobile/bind/testdata" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/golang.org/x/mobile/internal/binres/testdata" />
+      <root url="file://$PROJECT_DIR$" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/github.com/nsf/termbox-go/_demos" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/github.com/boombuler/termui/.git" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/github.com/mattn/go-runewidth/.git" />
+      <root url="file://$PROJECT_DIR$/../AdminServer/src/github.com/nsf/termbox-go/.git" />
+    </excluded>
+  </library>
+</component>
