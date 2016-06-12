@@ -2,7 +2,7 @@ package keybd_event
 /*
  #cgo CFLAGS: -x objective-c
  #cgo LDFLAGS: -framework Cocoa
- #import <Cocoa/Cocoa.h>
+ #import <Foundation/Foundation.h>
  CGEventRef Create(int k){
 	CGEventRef event = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)k, true);
 	return event;
@@ -16,6 +16,7 @@ package keybd_event
  }
 */
 import "C"
+import "time"
 const (
 	_AShift = C.kCGEventFlagMaskAlphaShift
 	_VK_SHIFT = C.kCGEventFlagMaskShift
@@ -71,6 +72,7 @@ func (k KeyBonding) tapKey(key int) {
 		shift(event)
 	}
 	C.KeyTap(event)
+	time.Sleep(100*time.Millisecond) //ignore if speed is most in my test system
 }
 const (
 	VK_A = 0x00
