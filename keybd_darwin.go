@@ -179,8 +179,8 @@ const (
 	VK_F2 = 0x78
 	VK_PageDown = 0x79
 	VK_F1 = 0x7A
-	VK_LeftArrow = 0x7B
-	VK_RightArrow = 0x7C
-	VK_DownArrow = 0x7D
-	VK_UpArrow = 0x7E
+	VK_Left = 0x7B
+	VK_Right = 0x7C
+	VK_Down = 0x7D
+	VK_Up = 0x7E
 )
