@@ -141,11 +141,11 @@ const (
 	VK_Keypad8 = 0x5B
 	VK_Keypad9 = 0x5C
 
-	VK_RETURN = 0x24
+	VK_ENTER = 0x24
 	VK_TAB = 0x30
 	VK_SPACE = 0x31
 	VK_DELETE = 0x33
-	VK_ESCAPE = 0x35
+	VK_ESC = 0x35
 	VK_CAPSLOCK = 0x39
 	VK_Option = 0x3A
 	VK_RightOption = 0x3D
