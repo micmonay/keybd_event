@@ -5,7 +5,12 @@
 
 ### An example :
 ```go
-    kb,err := keybd.NewKeyBonding()
+
+    import (
+    	"github.com/micmonay/keybd_event"
+    )
+    
+    kb,err := keybd_event.NewKeyBonding()
     if err!=nil {
         panic(err)
     }
@@ -13,7 +18,7 @@
     if runtime.GOOS == "linux" {
         time.Sleep(2 * time.Second)
     }
-    kb.SetKeys(keybd.VK_A,keybd.VK_B) //set keys
+    kb.SetKeys(keybd_event.VK_A,keybd_event.VK_B) //set keys
 
     kb.HasSHIFT(true) //set shif is pressed
 
