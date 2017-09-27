@@ -5,26 +5,36 @@
 
 ### An example :
 ```go
+package main
 
-    import (
-    	"github.com/micmonay/keybd_event"
-    )
-    
-    kb,err := keybd_event.NewKeyBonding()
-    if err!=nil {
-        panic(err)
-    }
-    // For linux, it is very important wait 2 seconds
-    if runtime.GOOS == "linux" {
-        time.Sleep(2 * time.Second)
-    }
-    kb.SetKeys(keybd_event.VK_A,keybd_event.VK_B) //set keys
+import (
+	"runtime"
+	"time"
+	"github.com/micmonay/keybd_event"
+)
 
-    kb.HasSHIFT(true) //set shif is pressed
+func main() {
+	kb, err := keybd_event.NewKeyBonding()
+	if err != nil {
+		panic(err)
+	}
 
-    err = kb.Launching() //launch
-    if err!=nil {
-        panic(err)
-    }
-    //Ouput : AB
+	// For linux, it is very important wait 2 seconds
+	if runtime.GOOS == "linux" {
+		time.Sleep(2 * time.Second)
+	}
+	
+	//set keys
+	kb.SetKeys(keybd_event.VK_A, keybd_event.VK_B) 
+
+	//set shif is pressed
+	kb.HasSHIFT(true) 
+
+	//launch
+	err = kb.Launching() 
+	if err != nil {
+		panic(err)
+	}
+	//Ouput : AB
+}
 ```
