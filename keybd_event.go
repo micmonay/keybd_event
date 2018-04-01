@@ -1,6 +1,7 @@
 // Package keybd_event is used for a key press simulated in Windows, Linux and Mac
 package keybd_event
 
+//KeyBonding type for keybd_event
 type KeyBonding struct {
 	hasCTRL   bool
 	hasALT    bool
@@ -10,36 +11,48 @@ type KeyBonding struct {
 	keys      []int
 }
 
-//Use for create struct KeyBounding
+//NewKeyBonding Use for create struct KeyBounding
 func NewKeyBonding() (KeyBonding, error) {
 	keyBounding := KeyBonding{}
-	keyBounding.hasALT = false
-	keyBounding.hasCTRL = false
-	keyBounding.hasSHIFT = false
-	keyBounding.hasRCTRL = false
-	keyBounding.hasRSHIFT = false
-	keyBounding.keys = []int{}
+	keyBounding.Clear()
 	err := initKeyBD()
 	if err != nil {
 		return keyBounding, err
 	}
 	return keyBounding, nil
 }
+
+//Clear clean instance
+func (k *KeyBonding) Clear() {
+	k.hasALT = false
+	k.hasCTRL = false
+	k.hasSHIFT = false
+	k.hasRCTRL = false
+	k.hasRSHIFT = false
+	k.keys = []int{}
+}
+
+//SetKeys set keys
 func (k *KeyBonding) SetKeys(keys ...int) {
 	k.keys = keys
 }
 
-//If key ALT pressed
+//AddKey add one key pressed
+func (k *KeyBonding) AddKey(key int) {
+	k.keys = append(k.keys, key)
+}
+
+//HasALT If key ALT pressed
 func (k *KeyBonding) HasALT(b bool) {
 	k.hasALT = b
 }
 
-//If key CTRL pressed
+//HasCTRL If key CTRL pressed
 func (k *KeyBonding) HasCTRL(b bool) {
 	k.hasCTRL = b
 }
 
-//If key SHIFT pressed
+//HasSHIFT If key SHIFT pressed
 func (k *KeyBonding) HasSHIFT(b bool) {
 	k.hasSHIFT = b
 }
