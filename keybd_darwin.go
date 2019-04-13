@@ -46,6 +46,9 @@ func (k *KeyBonding) Launching() error {
 	}
 	return nil
 }
+func altgr(event C.CGEventRef) {
+	alt(event)
+}
 func shift(event C.CGEventRef) {
 	C.AddActionKey(_VK_SHIFT, event)
 }
@@ -75,11 +78,27 @@ func (k KeyBonding) tapKey(key int) {
 	if k.hasRSHIFT { //not support on mac
 		shift(event)
 	}
+	if k.hasALTGR {
+		altgr(event)
+	}
 	C.KeyTap(event)
 	time.Sleep(100 * time.Millisecond) //ignore if speed is most in my test system
 }
 
 const (
+	VK_SP1  = 0x0A
+	VK_SP2  = 0x1B
+	VK_SP3  = 0x18
+	VK_SP4  = 0x21
+	VK_SP5  = 0x1E
+	VK_SP6  = 0x29
+	VK_SP7  = 0x27
+	VK_SP8  = 0x2A
+	VK_SP9  = 0x2B
+	VK_SP10 = 0x2F
+	VK_SP11 = 0x2C
+	VK_SP12 = 0x32
+
 	VK_A              = 0x00
 	VK_S              = 0x01
 	VK_D              = 0x02
