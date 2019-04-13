@@ -14,9 +14,9 @@ func ExampleNewKeyBonding() {
 	if runtime.GOOS == "linux" {
 		time.Sleep(2 * time.Second)
 	}
-	kb.SetKeys(VK_A, VK_B) //set keys
+	kb.SetKeys(VK_SP2) //set keys
 
-	kb.HasSHIFT(true) //set shif is pressed
+	kb.HasALTGR(true) //set shif is pressed
 
 	err = kb.Launching() //launch
 	if err != nil {

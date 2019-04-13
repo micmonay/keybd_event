@@ -1,7 +1,12 @@
 # keybd_event
+This library simulates the key press on the keyboard.
 
+**Important :** 
+- The keys change in the different keyboard layout configuration of the target computer.
+- I have tested this code on the different system and I don't find the error, but I don't granted this update have no bug. If you have a bug, please create an issue.
 
 ## For simulate key press in Linux, Windows and Mac in golang
+
 
 ### An example :
 ```go
@@ -38,3 +43,12 @@ func main() {
 	//Ouput : AB
 }
 ```
+
+For easy access of all keys on the virtual keyboard, I have added more special keycodes constants `VK_SP*`. 
+
+The next picture is a good solution to understand
+
+![keyboard.png](./keyboard.png)
+
+# Build
+For the Darwin (MAC OS) target, this library depend of the frameworks Apple, I did not find a solution for cross compilation.
