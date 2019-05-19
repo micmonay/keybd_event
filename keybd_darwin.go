@@ -4,8 +4,12 @@ package keybd_event
  #cgo CFLAGS: -x objective-c
  #cgo LDFLAGS: -framework Cocoa
  #import <Foundation/Foundation.h>
- CGEventRef Create(int k){
+ CGEventRef CreateDown(int k){
 	CGEventRef event = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)k, true);
+	return event;
+ }
+ CGEventRef CreateUp(int k){
+	CGEventRef event = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)k, false);
 	return event;
  }
  void KeyTap(CGEventRef event){
@@ -62,27 +66,29 @@ func cmd(event C.CGEventRef) {
 	C.AddActionKey(_VK_CMD, event)
 }
 func (k KeyBonding) tapKey(key int) {
-	event := C.Create(C.int(key))
+	downEvent := C.CreateDown(C.int(key))
+	upEvent := C.CreateUp(C.int(key))
 	if k.hasALT {
-		alt(event)
+		alt(downEvent)
 	}
 	if k.hasCTRL {
-		ctrl(event)
+		ctrl(downEvent)
 	}
 	if k.hasSHIFT {
-		shift(event)
+		shift(downEvent)
 	}
 	if k.hasRCTRL { //not support on mac
-		ctrl(event)
+		ctrl(downEvent)
 	}
 	if k.hasRSHIFT { //not support on mac
-		shift(event)
+		shift(downEvent)
 	}
 	if k.hasALTGR {
-		altgr(event)
+		altgr(downEvent)
 	}
-	C.KeyTap(event)
+	C.KeyTap(downEvent)
 	time.Sleep(100 * time.Millisecond) //ignore if speed is most in my test system
+	C.KeyTap(upEvent)
 }
 
 const (
