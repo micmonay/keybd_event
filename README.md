@@ -50,5 +50,23 @@ The next picture is a good solution to understand
 
 ![keyboard.png](./keyboard.png)
 
-# Build
-For the Darwin (MAC OS) target, this library depend of the frameworks Apple, I did not find a solution for cross compilation.
+## Linux
+
+On Linux this library use **uinput**, but generally, on the major distributions, the uinput is only for the root user. 
+
+The easy solution is executing on root user or change permission by `chmod`, but it is not good.
+
+You can follow the next example, for more security.
+
+```bash
+sudo groupadd uinput
+sudo usermod -a -G uinput my_username
+sudo udevadm control --reload-rules
+echo "SUBSYSTEM==\"misc\", KERNEL==\"uinput\", GROUP=\"uinput\", MODE=\"0660\"" | sudo tee /etc/udev/rules.d/uinput.rules
+echo uinput | sudo tee /etc/modules-load.d/uinput.conf
+```
+
+Another subtility on Linux, it is important after creating keybd_event, to waiting 2 seconds before running first keyboard actions
+
+## Darwin (MAC OS)
+This library depends on the frameworks Apple, I did not find a solution for cross-compilation.
