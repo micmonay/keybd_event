@@ -66,7 +66,7 @@ echo "SUBSYSTEM==\"misc\", KERNEL==\"uinput\", GROUP=\"uinput\", MODE=\"0660\"" 
 echo uinput | sudo tee /etc/modules-load.d/uinput.conf
 ```
 
-Another subtility on Linux, it is important after creating keybd_event, to waiting 2 seconds before running first keyboard actions
+Another subtlety on Linux, it is important after creating keybd_event, to waiting 2 seconds before running first keyboard actions
 
 ## Darwin (MAC OS)
 This library depends on the frameworks Apple, I did not find a solution for cross-compilation.
