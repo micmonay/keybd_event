@@ -63,3 +63,13 @@ func (k *KeyBonding) HasSHIFT(b bool) {
 func (k *KeyBonding) HasALTGR(b bool) {
 	k.hasALTGR = b
 }
+
+//HasCTRLR If key CTRLR pressed
+func (k *KeyBonding) HasCTRLR(b bool) {
+	k.hasRCTRL = b
+}
+
+//HasSHIFTR If key SHIFTR pressed
+func (k *KeyBonding) HasSHIFTR(b bool) {
+	k.hasRSHIFT = b
+}
