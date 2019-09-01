@@ -65,11 +65,15 @@ func (k *KeyBonding) HasALTGR(b bool) {
 }
 
 //HasCTRLR If key CTRLR pressed
+//
+//This is currently not supported on macOS
 func (k *KeyBonding) HasCTRLR(b bool) {
 	k.hasRCTRL = b
 }
 
 //HasSHIFTR If key SHIFTR pressed
+//
+//This is currently not supported on macOS
 func (k *KeyBonding) HasSHIFTR(b bool) {
 	k.hasRSHIFT = b
 }
