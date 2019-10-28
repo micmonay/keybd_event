@@ -29,6 +29,9 @@ func (k *KeyBonding) Launching() error {
 	if k.hasRCTRL {
 		downKey(_VK_RCONTROL)
 	}
+	if k.hasSuper {
+		downKey(_VK_LWIN)
+	}
 	for _, key := range k.keys {
 		downKey(key)
 	}
@@ -54,6 +57,9 @@ func (k *KeyBonding) Launching() error {
 	}
 	for _, key := range k.keys {
 		upKey(key)
+	}
+	if k.hasSuper {
+		upKey(_VK_LWIN)
 	}
 	return nil
 }
@@ -88,6 +94,8 @@ const (
 	_VK_RSHIFT          = 0xA1 + 0xFFF
 	_VK_LCONTROL        = 0xA2 + 0xFFF
 	_VK_RCONTROL        = 0xA3 + 0xFFF
+	_VK_LWIN            = 0x5B + 0xFFF
+	_VK_RWIN            = 0x5C + 0xFFF
 	_KEYEVENTF_KEYUP    = 0x0002
 	_KEYEVENTF_SCANCODE = 0x0008
 )

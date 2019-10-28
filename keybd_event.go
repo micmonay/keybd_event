@@ -9,6 +9,7 @@ type KeyBonding struct {
 	hasRCTRL  bool
 	hasRSHIFT bool
 	hasALTGR  bool
+	hasSuper bool
 	keys      []int
 }
 
@@ -31,6 +32,7 @@ func (k *KeyBonding) Clear() {
 	k.hasRCTRL = false
 	k.hasRSHIFT = false
 	k.hasALTGR = false
+	k.hasSuper = false
 	k.keys = []int{}
 }
 
@@ -62,6 +64,11 @@ func (k *KeyBonding) HasSHIFT(b bool) {
 //HasALTGR If key ALTGR pressed
 func (k *KeyBonding) HasALTGR(b bool) {
 	k.hasALTGR = b
+}
+
+//HasSuper If key Super pressed
+func (k *KeyBonding) HasSuper(b bool) {
+	k.hasSuper = b
 }
 
 //HasCTRLR If key CTRLR pressed

@@ -86,8 +86,32 @@ func (k KeyBonding) tapKey(key int) {
 	if k.hasALTGR {
 		altgr(downEvent)
 	}
+	if k.hasSuper {
+		cmd(downEvent)
+	}
 	C.KeyTap(downEvent)
 	time.Sleep(100 * time.Millisecond) //ignore if speed is most in my test system
+	if k.hasALT {
+		alt(upEvent)
+	}
+	if k.hasCTRL {
+		ctrl(upEvent)
+	}
+	if k.hasSHIFT {
+		shift(upEvent)
+	}
+	if k.hasRCTRL { //not support on mac
+		ctrl(upEvent)
+	}
+	if k.hasRSHIFT { //not support on mac
+		shift(upEvent)
+	}
+	if k.hasALTGR {
+		altgr(upEvent)
+	}
+	if k.hasSuper {
+		cmd(upEvent)
+	}
 	C.KeyTap(upEvent)
 }
 

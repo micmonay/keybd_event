@@ -34,6 +34,8 @@ const (
 	_VK_LEFTALT           = 56
 	_VK_RIGHTALT          = 100
 	_VK_ALT               = 56
+	_VK_LEFTMETA          = 125
+	_VK_RIGHTMETA         = 126
 )
 
 func initKeyBD() error {
@@ -137,6 +139,12 @@ func (k *KeyBonding) Launching() error {
 			return err
 		}
 	}
+	if k.hasSuper {
+		err := downKey(_VK_LEFTMETA)
+		if err != nil {
+			return err
+		}
+	}
 	for _, key := range k.keys {
 		err := downKey(key)
 		if err != nil {
@@ -180,6 +188,12 @@ func (k *KeyBonding) Launching() error {
 	}
 	if k.hasALTGR {
 		err = upKey(_VK_RIGHTALT)
+		if err != nil {
+			return err
+		}
+	}
+	if k.hasSuper {
+		err := upKey(_VK_LEFTMETA)
 		if err != nil {
 			return err
 		}
