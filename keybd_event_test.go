@@ -14,13 +14,14 @@ func ExampleNewKeyBonding() {
 	if runtime.GOOS == "linux" {
 		time.Sleep(2 * time.Second)
 	}
-	kb.SetKeys(VK_SP2) //set keys
+	kb.SetKeys(VK_A, VK_B) //set keys
 
-	kb.HasALTGR(true) //set shif is pressed
+	kb.HasSHIFT(true) //set shif is pressed
 
 	err = kb.Launching() //launch
 	if err != nil {
 		panic(err)
 	}
-	// Output: AB
+	// The output is in your console
+	// Output:
 }
