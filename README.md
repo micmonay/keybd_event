@@ -32,7 +32,7 @@ func main() {
 	//set keys
 	kb.SetKeys(keybd_event.VK_A, keybd_event.VK_B) 
 
-	//set shif is pressed
+	//set shift is pressed
 	kb.HasSHIFT(true) 
 
 	//launch
