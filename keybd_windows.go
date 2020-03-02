@@ -7,8 +7,7 @@ import (
 var dll = syscall.NewLazyDLL("user32.dll")
 var procKeyBd = dll.NewProc("keybd_event")
 
-// Launch key bounding
-func (k *KeyBonding) Launching() error {
+func (k *KeyBonding) Press() error {
 	//key down
 	if k.hasALT {
 		downKey(_VK_ALT)
@@ -35,6 +34,9 @@ func (k *KeyBonding) Launching() error {
 	for _, key := range k.keys {
 		downKey(key)
 	}
+	return nil
+}
+func (k *KeyBonding) Release() error {
 	//key up
 	if k.hasALT {
 		upKey(_VK_ALT)
@@ -62,6 +64,12 @@ func (k *KeyBonding) Launching() error {
 		upKey(_VK_LWIN)
 	}
 	return nil
+}
+
+// Launch key bounding
+func (k *KeyBonding) Launching() error {
+	k.Press()
+	k.Release()
 }
 func downKey(key int) {
 	flag := 0

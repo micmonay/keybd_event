@@ -16,6 +16,7 @@ type timeval C.struct_timeval
 type input_event C.struct_input_event
 
 var fd *os.File
+var X11 = true
 
 const (
 	_EV_KEY               = C.EV_KEY
@@ -100,70 +101,72 @@ func getFileUInput() (string, error) {
 	return "", err
 }
 
-// Launch key bounding
-func (k *KeyBonding) Launching() error {
-
+func (k *KeyBonding) Press() error {
+	var err error
 	if k.hasALT {
-		err := downKey(_VK_ALT)
+		err = downKey(_VK_ALT)
 		if err != nil {
 			return err
 		}
 	}
 	if k.hasSHIFT {
-		err := downKey(_VK_SHIFT)
+		err = downKey(_VK_SHIFT)
 		if err != nil {
 			return err
 		}
 	}
 	if k.hasCTRL {
-		err := downKey(_VK_CTRL)
+		err = downKey(_VK_CTRL)
 		if err != nil {
 			return err
 		}
 	}
 	if k.hasRSHIFT {
-		err := downKey(_VK_RIGHTSHIFT)
+		err = downKey(_VK_RIGHTSHIFT)
 		if err != nil {
 			return err
 		}
 	}
 	if k.hasRCTRL {
-		err := downKey(_VK_RIGHTCTRL)
+		err = downKey(_VK_RIGHTCTRL)
 		if err != nil {
 			return err
 		}
 	}
 	if k.hasALTGR {
-		err := downKey(_VK_RIGHTALT)
+		err = downKey(_VK_RIGHTALT)
 		if err != nil {
 			return err
 		}
 	}
 	if k.hasSuper {
-		err := downKey(_VK_LEFTMETA)
+		err = downKey(_VK_LEFTMETA)
 		if err != nil {
 			return err
 		}
 	}
 	for _, key := range k.keys {
-		err := downKey(key)
+		err = downKey(key)
 		if err != nil {
 			return err
 		}
 	}
-	err := sync()
+	err = sync()
 	if err != nil {
 		return err
 	}
-	//key up
+	return nil
+}
+func (k *KeyBonding) Release() error {
+	var err error
 	if k.hasALT {
-		err := upKey(_VK_ALT)
+		err = upKey(_VK_ALT)
 		if err != nil {
 			return err
 		}
 	}
 	if k.hasSHIFT {
-		err := upKey(_VK_SHIFT)
+		err = upKey(_VK_SHIFT)
 		if err != nil {
 			return err
 		}
@@ -210,6 +213,14 @@ func (k *KeyBonding) Launching() error {
 	}
 	//Destroy device
 
+	return nil
+}
+
+// Launch key bounding
+func (k *KeyBonding) Launching() error {
+	k.Press()
+	//key up
+	k.Release()
 	return nil
 }
 func keyEventSet() error {
