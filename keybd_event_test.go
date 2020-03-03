@@ -1,27 +1,40 @@
-package keybd_event
+package keybd_event_test
 
 import (
 	"runtime"
 	"time"
+
+	"github.com/micmonay/keybd_event"
 )
 
 func ExampleNewKeyBonding() {
-	kb, err := NewKeyBonding()
+	kb, err := keybd_event.NewKeyBonding()
 	if err != nil {
 		panic(err)
 	}
-	// For linux, it is very important wait 2 seconds
+
+	// For linux, it is very important to wait 2 seconds
 	if runtime.GOOS == "linux" {
 		time.Sleep(2 * time.Second)
 	}
-	kb.SetKeys(VK_A, VK_B) //set keys
 
-	kb.HasSHIFT(true) //set shif is pressed
+	// Select keys to be pressed
+	kb.SetKeys(keybd_event.VK_A, keybd_event.VK_B)
 
-	err = kb.Launching() //launch
+	// Set shift to be pressed
+	kb.HasSHIFT(true)
+
+	// Press the selected keys
+	err = kb.Launching()
 	if err != nil {
 		panic(err)
 	}
-	// The output is in your console
+
+	// Or you can use Press and Release
+	kb.Press()
+	time.Sleep(10 * time.Millisecond)
+	kb.Release()
+
+	// Here, the program will generate "ABAB" as if they were pressed on the keyboard.
 	// Output:
 }
