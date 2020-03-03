@@ -39,7 +39,12 @@ func main() {
 		panic(err)
 	}
 	
-	// Here, the program will generate "AB" as if they were pressed on the keyboard.
+	// Or you can use Press and Release
+	kb.Press()
+	time.Sleep(10 * time.Millisecond)
+	kb.Release()
+
+	// Here, the program will generate "ABAB" as if they were pressed on the keyboard.
 }
 ```
 

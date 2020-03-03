@@ -42,6 +42,22 @@ const (
 
 func initKeyBD() error { return nil }
 
+//Press key(s)
+func (k *KeyBonding) Press() error {
+	for _, key := range k.keys {
+		k.keyPress(key)
+	}
+	return nil
+}
+
+//Release key(s)
+func (k *KeyBonding) Release() error {
+	for _, key := range k.keys {
+		k.keyRelease(key)
+	}
+	return nil
+}
+
 // Launch key bounding
 func (k *KeyBonding) Launching() error {
 
@@ -65,9 +81,8 @@ func alt(event C.CGEventRef) {
 func cmd(event C.CGEventRef) {
 	C.AddActionKey(_VK_CMD, event)
 }
-func (k KeyBonding) tapKey(key int) {
+func (k KeyBonding) keyPress(key int) {
 	downEvent := C.CreateDown(C.int(key))
-	upEvent := C.CreateUp(C.int(key))
 	if k.hasALT {
 		alt(downEvent)
 	}
@@ -90,7 +105,9 @@ func (k KeyBonding) tapKey(key int) {
 		cmd(downEvent)
 	}
 	C.KeyTap(downEvent)
-	time.Sleep(100 * time.Millisecond) //ignore if speed is most in my test system
+}
+func (k KeyBonding) keyRelease(key int) {
+	upEvent := C.CreateUp(C.int(key))
 	if k.hasALT {
 		alt(upEvent)
 	}
@@ -113,6 +130,11 @@ func (k KeyBonding) tapKey(key int) {
 		cmd(upEvent)
 	}
 	C.KeyTap(upEvent)
+}
+func (k KeyBonding) tapKey(key int) {
+	k.keyPress(key)
+	time.Sleep(100 * time.Millisecond) //ignore if speed is most in my test system
+	k.keyRelease(key)
 }
 
 const (
