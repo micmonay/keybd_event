@@ -41,12 +41,16 @@ const (
 )
 
 func initKeyBD() error { return nil }
+
+//Press key(s)
 func (k *KeyBonding) Press() error {
 	for _, key := range k.keys {
 		k.keyPress(key)
 	}
 	return nil
 }
+
+//Release key(s)
 func (k *KeyBonding) Release() error {
 	for _, key := range k.keys {
 		k.keyRelease(key)

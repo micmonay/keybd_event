@@ -101,6 +101,7 @@ func getFileUInput() (string, error) {
 	return "", err
 }
 
+//Release key(s)
 func (k *KeyBonding) Press() error {
 	var err error
 	if k.hasALT {
