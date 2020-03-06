@@ -71,4 +71,4 @@ echo uinput | sudo tee /etc/modules-load.d/uinput.conf
 Another subtlety on Linux: it is important after creating the `keybd_event` to **wait 2 seconds before running first keyboard actions**.
 
 ## Darwin (MacOS)
-This library depends on Apple's frameworks, and I did not find a solution to cross-compile from Mac to another OS.
+This library depends on Apple's frameworks, and I did not find a solution to cross-compile from another OS to MacOS.
