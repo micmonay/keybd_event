@@ -1,4 +1,7 @@
 # keybd_event
+
+[![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/micmonay/keybd_event)
+
 This library simulates the key press on a keyboard. It runs on Linux, Windows and Mac.
 
 **Important :** 
