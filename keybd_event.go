@@ -9,7 +9,7 @@ type KeyBonding struct {
 	hasRCTRL  bool
 	hasRSHIFT bool
 	hasALTGR  bool
-	hasSuper bool
+	hasSuper  bool
 	keys      []int
 }
 

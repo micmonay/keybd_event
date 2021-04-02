@@ -36,5 +36,6 @@ func ExampleNewKeyBonding() {
 	kb.Release()
 
 	// Here, the program will generate "ABAB" as if they were pressed on the keyboard.
+
 	// Output:
 }
