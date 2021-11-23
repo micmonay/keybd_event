@@ -11,11 +11,25 @@ type KeyBonding struct {
 	hasALTGR  bool
 	hasSuper  bool
 	keys      []int
+
+	PID int
 }
 
 //NewKeyBonding Use for create struct KeyBounding
 func NewKeyBonding() (KeyBonding, error) {
 	keyBounding := KeyBonding{}
+	keyBounding.Clear()
+	err := initKeyBD()
+	if err != nil {
+		return keyBounding, err
+	}
+	return keyBounding, nil
+}
+
+//NewKeyBondingWithPID Use for create struct KeyBounding with target process ID
+//Note: Only implemented in Darwin (MacOS)
+func NewKeyBondingWithPID(pid int) (KeyBonding, error) {
+	keyBounding := KeyBonding{PID: pid}
 	keyBounding.Clear()
 	err := initKeyBD()
 	if err != nil {

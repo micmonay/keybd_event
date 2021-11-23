@@ -16,6 +16,11 @@ package keybd_event
 	CGEventPost(kCGAnnotatedSessionEventTap, event);
 	CFRelease(event);
  }
+
+ void KeyTapPID(int pid, CGEventRef event){
+	CGEventPostToPid(pid, event);
+	CFRelease(event);
+ }
  void AddActionKey(CGEventFlags type,CGEventRef event){
  	CGEventSetFlags(event, type);
  }
@@ -104,7 +109,12 @@ func (k KeyBonding) keyPress(key int) {
 	if k.hasSuper {
 		cmd(downEvent)
 	}
-	C.KeyTap(downEvent)
+
+	if k.PID > 0 {
+		C.KeyTapPID(C.int(k.PID), downEvent)
+	} else {
+		C.KeyTap(downEvent)
+	}
 }
 func (k KeyBonding) keyRelease(key int) {
 	upEvent := C.CreateUp(C.int(key))
@@ -129,7 +139,12 @@ func (k KeyBonding) keyRelease(key int) {
 	if k.hasSuper {
 		cmd(upEvent)
 	}
-	C.KeyTap(upEvent)
+
+	if k.PID > 0 {
+		C.KeyTapPID(C.int(k.PID), upEvent)
+	} else {
+		C.KeyTap(upEvent)
+	}
 }
 func (k KeyBonding) tapKey(key int) {
 	k.keyPress(key)

@@ -75,3 +75,5 @@ Another subtlety on Linux: it is important after creating the `keybd_event` to *
 
 ## Darwin (MacOS)
 This library depends on Apple's frameworks, and I did not find a solution to cross-compile from another OS to MacOS.
+
+By default, the keypress will be sent to the active window only, but you can use the `NewKeyBondingWithPID` and provide an integer process id.
