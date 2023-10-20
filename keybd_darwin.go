@@ -3,7 +3,7 @@ package keybd_event
 /*
  #cgo CFLAGS: -x objective-c
  #cgo LDFLAGS: -framework Cocoa
- #import <Foundation/Foundation.h>
+ #import <Cocoa/Cocoa.h>
  #import <ApplicationServices/ApplicationServices.h>
  CGEventRef CreateDown(int k){
 	CGEventRef event = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)k, true);
