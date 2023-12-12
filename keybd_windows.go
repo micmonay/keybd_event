@@ -2,10 +2,13 @@ package keybd_event
 
 import (
 	"syscall"
+	"unsafe"
 )
 
-var dll = syscall.NewLazyDLL("user32.dll")
-var procKeyBd = dll.NewProc("keybd_event")
+var (
+	user32        = syscall.NewLazyDLL("user32.dll")
+	procSendInput = user32.NewProc("SendInput")
+)
 
 // Press key(s)
 func (k *KeyBonding) Press() error {
@@ -37,7 +40,7 @@ func (k *KeyBonding) Press() error {
 	return nil
 }
 
-//Release key(s)
+// Release key(s)
 func (k *KeyBonding) Release() error {
 	if k.hasALT {
 		upKey(_VK_ALT)
@@ -76,6 +79,7 @@ func (k *KeyBonding) Launching() error {
 	err = k.Release()
 	return err
 }
+
 func downKey(key int) {
 	flag := 0
 	if key < 0xFFF { // Detect if the key code is virtual or no
@@ -84,7 +88,7 @@ func downKey(key int) {
 		key -= 0xFFF
 	}
 	vkey := key + 0x80
-	procKeyBd.Call(uintptr(key), uintptr(vkey), uintptr(flag), 0)
+	sendInput(key, vkey, flag)
 }
 func upKey(key int) {
 	flag := _KEYEVENTF_KEYUP
@@ -94,8 +98,26 @@ func upKey(key int) {
 		key -= 0xFFF
 	}
 	vkey := key + 0x80
-	procKeyBd.Call(uintptr(key), uintptr(vkey), uintptr(flag), 0)
+	sendInput(key, vkey, flag)
 }
+
+func sendInput(key int, vkey int, flag int) {
+	var i input
+	i.inputType = _INPUT_KEYBOARD
+	i.ki = keyboardInput{
+		wVk:         uint16(key),
+		wScan:       uint16(vkey),
+		dwFlags:     uint32(flag),
+		time:        0,
+		dwExtraInfo: 0,
+	}
+	procSendInput.Call(
+		uintptr(1),
+		uintptr(unsafe.Pointer(&i)),
+		uintptr(unsafe.Sizeof(i)),
+	)
+}
+
 func initKeyBD() error { return nil }
 
 const (
@@ -111,6 +133,7 @@ const (
 	_VK_RWIN            = 0x5C + 0xFFF
 	_KEYEVENTF_KEYUP    = 0x0002
 	_KEYEVENTF_SCANCODE = 0x0008
+	_INPUT_KEYBOARD     = 1
 )
 const (
 	VK_SP1  = 41
@@ -188,7 +211,7 @@ const (
 	VK_F22 = 0x85 + 0xFFF
 	VK_F23 = 0x86 + 0xFFF
 	VK_F24 = 0x87 + 0xFFF
-	
+
 	VK_NUMLOCK    = 69
 	VK_SCROLLLOCK = 70
 	VK_RESERVED   = 0
@@ -308,3 +331,16 @@ const (
 	VK_PA1                 = 0xFD + 0xFFF
 	VK_OEM_CLEAR           = 0xFE + 0xFFF
 )
+
+type input struct {
+	inputType uint32
+	ki        keyboardInput
+	padding   uint64
+}
+type keyboardInput struct {
+	wVk         uint16
+	wScan       uint16
+	dwFlags     uint32
+	time        uint32
+	dwExtraInfo uint64
+}
